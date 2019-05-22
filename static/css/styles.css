@@ -1,0 +1,18 @@
+.brand-logo{
+    height: 200px;
+    width: 82rem;
+}
+
+.brand-logo img {
+    border: none;
+    display: block;
+    margin: 0 auto;
+}
+
+.navbar{
+    background-color: #fff;
+    color: red;
+}
+.nav ul a {
+    color: red;
+}
