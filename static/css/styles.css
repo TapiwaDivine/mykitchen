@@ -23,8 +23,9 @@
 .inner_nav_menu ul li:nth-child(3) {float: left}
 
 .inner_nav_menu ul li a{
-    color: #000;
-    font-size: 20px;
+    color: #FF0000;
+    font-size: 1.3rem;
+    font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
     display: block;
@@ -32,7 +33,7 @@
 }
 
 .inner_nav_menu ul li a:hover{
-    color: #FF0000;
+    color: #000;
 }
 
 #nav_menu{
@@ -70,4 +71,20 @@
 .container-fluid {
     padding-left: 0px;
     padding-right: 0px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+hr {
+    border: 1px solid red;
+    text-align: center;
+    width: 20%;
+}
+
+h4, h4 {
+    font-size: 1.7rem;
+    text-align: center;
+    color: red;
+    font-weight: 700;
+    padding: 30px;
 }
