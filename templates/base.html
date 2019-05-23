@@ -17,36 +17,26 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css" />
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="brand-logo">
-                <img src="static/images/mykichenlogo.png"></img>
-            </div>
+    <div id="nav_menu">
+        <div class="logo">
+            <a href="#"><img src="static/images/mykichenlogo.png" alt="My Kitchen" style="width: 120px; height: 120px;"></img></a>
+        </div>
+        <div class="inner_nav_menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Recipes</a></li>
+                <li><a href="#">Add Recipes</a></li>
+                <li><a href="#">Sign up</a></li>
+                <li><a href="#">login</a></li>
+            </ul>
         </div>
     </div>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div id="navbar" class="nav-links">
-                <ul class="navbar-left">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Add Recipe</a></li>
-                    <li><a href="#">Categories</a></li>
-                </ul>
+    <div class="container-fluid">
+        <section id="showcase">
+            <div class="bg-image">
+               
             </div>
-            <div id="navbar" class="nav-links">
-                <ul class="navbar-right">
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-<div class="hero-image">
-   <h1 class="heading">Main Heading</h1>
-   <p><button class="btn btn-large">Big Button</button></p>
-</div>
-    
+        </section>
     <div class="container">
         {% block content %} {% endblock %}
     </div>

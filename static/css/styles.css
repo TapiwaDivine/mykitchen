@@ -1,18 +1,73 @@
-.brand-logo{
-    height: 200px;
-    width: 82rem;
-}
+/*-----------------------------------------------------------------header and nav sections------ */
 
-.brand-logo img {
-    border: none;
-    display: block;
+.inner_nav_menu {
     margin: 0 auto;
+    width: 1170px;
 }
 
-.navbar{
-    background-color: #fff;
-    color: red;
+.inner_nav_menu ul{
+    margin: 0;
+    padding: 50px 0 0;
+    list-style: none;
+    text-align: right;
 }
-.nav ul a {
-    color: red;
+
+.inner_nav_menu ul li {
+    float: none;
+    display: inline-block;
+    
+    
+}
+.inner_nav_menu ul li:nth-child(1) {float: left}
+.inner_nav_menu ul li:nth-child(2) {float: left}
+.inner_nav_menu ul li:nth-child(3) {float: left}
+
+.inner_nav_menu ul li a{
+    color: #000;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+}
+
+.inner_nav_menu ul li a:hover{
+    color: #FF0000;
+}
+
+#nav_menu{
+    width: 100%;
+    position: relative;
+}
+
+.logo{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 45%;
+    top: 0;
+    content: "";
+}
+/*-------------------------------------------------------------------------------Showcase section-------------*/
+
+#showcase .bg-image{
+    background-image: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+    ),
+    url('/static/images/hero.jpg'); 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;
+    height: 75vh;
+    top: 0;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    
+}
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
 }
