@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <!--Materialize icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -25,27 +24,21 @@
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Recipes</a></li>
-                <li><a href="#">Add Recipes</a></li>
+                <li><a href="{{url_for('add_recipe')}}">Add Recipes</a></li>
                 <li><a href="#">Sign up</a></li>
                 <li><a href="#">login</a></li>
             </ul>
         </div>
     </div>
     <div class="container-fluid">
-        <section id="showcase">
-            <div class="bg-image">
-               
-            </div>
-        </section>
+        {% block showcase %} {% endblock %}
     </div>
-    <hr>
-    <div class="container">
+    <div class="container-fluid">
         {% block content %} {% endblock %}
     </div>
 <!--Materialize jquery and javascript-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <!--Bootstrap Js and Jquery support-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
