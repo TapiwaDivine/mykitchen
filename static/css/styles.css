@@ -66,9 +66,16 @@
     color: white;
     font-weight: bold;
     transition: .5s;
-    
 }
+
 .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.container {
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 30px;
@@ -79,6 +86,7 @@ hr {
     border: 1px solid red;
     text-align: center;
     width: 20%;
+    margin-top: 70px;
 }
 
 h4, h4 {
@@ -87,4 +95,23 @@ h4, h4 {
     color: red;
     font-weight: 700;
     padding: 30px;
+}
+
+/*--------------------------------------------------------------------------------Footer section-------------*/
+
+#footer .bg-image{
+    background-image: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+    ),
+    url('/static/images/veggies.jpg'); 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: cover;
+    height: 75vh;
+    top: 0;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    transition: .5s;
 }
