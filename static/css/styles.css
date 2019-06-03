@@ -23,7 +23,7 @@
 .inner_nav_menu ul li:nth-child(3) {float: left}
 
 .inner_nav_menu ul li a{
-    color: #FF0000;
+    color: #ee6e73;
     font-size: 1.3rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -32,6 +32,10 @@
     padding: 10px 20px;
 }
 
+.inner_nav_menu ul li a:active{
+    color: #fff;
+    background-color: #ee6e73;
+}
 .inner_nav_menu ul li a:hover{
     color: #000;
 }
@@ -116,3 +120,4 @@ h4, h4 {
     font-weight: bold;
     transition: .5s;
 }
+
