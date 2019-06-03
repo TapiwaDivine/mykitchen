@@ -24,11 +24,6 @@ def home():
     return render_template("index.html",
                             recipes=mongo.db.recipes.find())
     
-#@app.route('/display_card')
-#def display_card():
-#    return render_template("display_card.html",
-#                            recipes=mongo.db.recipes.find())
-                            
 @app.route('/add_recipe')
 def add_recipe():
     return render_template('add_recipe.html')
