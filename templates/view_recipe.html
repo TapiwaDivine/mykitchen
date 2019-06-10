@@ -1,0 +1,44 @@
+{% extends 'base.html'%} {% block content %}
+<div class="col s12 m6">
+    <h4 class="header">{{ recipe.title}} </h4>
+    <div class="card horizontal center-align">
+        <div class="row">
+            <div class="card-image">
+                <img src="{{ recipe.picture }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{ recipe.category }}</p>
+                </div>
+                <div class="card-content">
+                    <p><i class="material-icons prefix">timelapse</i>{{ recipe.cooking_time}}</p>
+                </div>
+                <div class="card-content">
+                    <p><i class="material-icons prefix">restaurant</i> Serving {{ recipe.serving }}</p>
+                </div>
+                <div class="card-content">
+                    <p><i class="material-icons prefix">location_on</i>{{ recipe.country_of_origin }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="recipe-content">
+    <div class="recipe-details">
+        <h3>Description</h3>
+        <p>{{ recipe.description }}</p>
+    </div>
+    <div class="recipe-details">
+        <h5>Ingredients</h5>
+        {% for ingredients ,value in recipe.ingredients.items() %}
+        <p>{{ ingredients }}: {{ value }}</p>
+        {% endfor %}
+    </div>
+    <div class="recipe-details">
+        <h3>Method (Instruction)</h3>
+        {% for value in recipe.method %}
+        <p>{{ value }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock%}

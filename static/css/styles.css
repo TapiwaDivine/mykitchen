@@ -87,7 +87,7 @@
 }
 
 hr {
-    border: 1px solid red;
+    border: 1px solid #ee6e73;
     text-align: center;
     width: 20%;
     margin-top: 100px;
@@ -97,7 +97,7 @@ hr {
 h4, h4 {
     font-size: 1.7rem;
     text-align: center;
-    color: red;
+    color: #ee6e73;
     font-weight: 700;
     padding: 30px;
 }
