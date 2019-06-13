@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, abort
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_bootstrap import Bootstrap
@@ -17,32 +17,46 @@ app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://localhost//')
 mongo = PyMongo(app)
 
 
-# display card on we website
+# Home page and recipe card display
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('index.html',
-                            recipes=mongo.db.recipes.find().limit(3))
-    
+                            recipes=mongo.db.recipes.find())
+
+# viewing a clicked recipe
+@app.route('/view_recipe/<recipe_id>')
+def view_recipe(recipe_id):
+    recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    recipe_views = mongo.db.recipes   
+    recipe_views.update({'_id': ObjectId(recipe_id)},
+    { '$inc': {'views': 1}})
+    return render_template('view_recipe.html', recipe=recipe)   
+  
+# route for add recipe page  
 @app.route('/add_recipe')
 def add_recipe():
     return render_template('add_recipe.html',
                             categories=mongo.db.categories.find())
-
+                            
+# inserting recipe in the data base
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
     return redirect(url_for('home'))
-
-@app.route('/view_recipe/<recipe_id>')
-def view_recipe(recipe_id):
-    recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    return render_template('view_recipe.html', recipe=recipe)
     
+# creating route to editing recipes on the web app
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    all_categories = mongo.db.categories.find()
+    return render_template('edit_recipe.html', recipe=the_recipe,
+                            categories=all_categories)
+
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    recipes = mongo.db.tasks
+    recipes = mongo.db.recipes
     recipes.update( {'_id': ObjectId(recipe_id)},
     {
         'title':request.form.get('title'),
@@ -55,12 +69,14 @@ def update_recipe(recipe_id):
         'category': request.form.get('category'),
         'country_of_origin': request.form.get('country_of_origin'),
         'allergens':request.form.get('allergens'),
-        'likes':request.form.get('likes'),
-        'views':request.form.get('views'),
-        'picture': request.form.get('picture'),
-        
+        'picture': request.form.get('picture')
     })
+    return redirect(url_for('home'))
 
+@app.route('/update_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipe.remove({'_id: ObjectId(recipe_id)'})
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

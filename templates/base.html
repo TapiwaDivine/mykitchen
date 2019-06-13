@@ -14,11 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--styles link by css-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css" />
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='js/main.js')}}" type="text/css" />
 </head>
 <body>
     <div id="nav_menu">
         <div class="logo">
-            <a href="#"><img src="static/images/mykichenlogo.png" alt="My Kitchen" style="width: 150px; height: 120px;"></img></a>
+            <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='images/mykichenlogo.png')}}" alt="My Kitchen" style="width: 150px; height: 120px;"></img></a>
         </div>
         <div class="inner_nav_menu">
             <ul>
