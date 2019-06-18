@@ -121,5 +121,16 @@ h4, h4 {
     transition: .5s;
 }
 
-/*--------------------------------------------------------------------------------view recipe section--------*/
+/*--------------------------------------------------------------------------------sign up section--------*/
+.btn-success {
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
 
+.success{
+    color: green
+}
