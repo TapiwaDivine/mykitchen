@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from flask_bootstrap import Bootstrap
@@ -21,6 +21,9 @@ app.config['SECRET_KEY'] = '190d61e8a37037e29228129682b22ea2'
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 
+# class User(mongo.db.Model):
+#    username = mongo.db.user_profile
+    
 
 # Home page and recipe card display
 @app.route('/')
@@ -90,20 +93,39 @@ def get_recipes():
     return render_template('get_recipes.html',
                            recipes=mongo.db.recipes.find())
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['POST', 'GET'])
 def signup():
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        flash(u'Account created for {{form.username.data}}!', 'success!')
-        return redirect(url_for('home'))
-    return render_template('signup.html', title='signup', form=form)
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'username' : request.form['username']})
 
-@app.route('/login')
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'username' : request.form['username'],'password' : hashpass})
+            session['username'] = request.form['username']
+            import pdb; pdb.set_trace()
+            return redirect(url_for('signup'))
+            
+        
+        return flash('That username already exists!', 'danger')
+
+    return redirect(url_for('home'))
+
+@app.route('/login', methods=['POST'])
 def login():
-    form = LoginForm()
-    return render_template('login.html', title='Login', form=form)
+    users = mongo.db.users 
+    login_user = users.find_one({'email' : request.form['email']})
+
+    if login_user:
+        if bcrypt.hashpw(request.form['pass'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+            session['username'] = request.form['username']
+            return redirect(url_for('home'))
+
+    return flash('Invalid username/password combination', 'danger')
+    
 
 if __name__ == '__main__':
+    
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)

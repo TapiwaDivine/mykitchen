@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css" />
     
     <link rel="stylesheet" href="{{url_for('static', filename='js/main.js')}}" type="text/css" />
+    {% if title %}
+    <title> mykitchen.com/{{ title }} </title>
+    {% else %}
+    <title>mykitchen.com</title>
+    {% endif %}
 </head>
 <body>
     <div id="nav_menu">
@@ -28,7 +33,7 @@
                 <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
                 <li><a href="{{url_for('add_recipe')}}">Add Recipes</a></li>
                 <li><a href="{{url_for('signup')}}">Sign up</a></li>
-                <li><a href="#">login</a></li>
+                <li><a href="{{url_for('login')}}">login</a></li>
             </ul>
         </div>
     </div>
