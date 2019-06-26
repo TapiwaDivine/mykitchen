@@ -29,11 +29,11 @@
         </div>
         <div class="inner_nav_menu">
             <ul>
-                <li><a href="{{url_for('home')}}">Home</a></li>
-                <li><a href="{{url_for('get_recipes')}}">Recipes</a></li>
-                <li><a href="{{url_for('add_recipe')}}">Add Recipes</a></li>
-                <li><a href="{{url_for('signup')}}">Sign up</a></li>
-                <li><a href="{{url_for('login')}}">login</a></li>
+                <li {%- if request.path == "/home" %} class="active" {% endif %}><a href="/home">Home</a></li>
+                <li {%- if request.path == "/get_recipes" %} class="active" {% endif %}><a href="/get_recipes">Recipes</a></li>
+                <li {%- if request.path == "/add_recipe" %} class="active" {% endif %}><a href="/add_recipe">Add Recipes</a></li>
+                <li {%- if request.path == "/signup" %} class="active" {% endif %}><a href="/signup">Sign up</a></li>
+                <li {%- if request.path == "/login" %} class="active" {% endif %}><a href="/login">login</a></li>
             </ul>
         </div>
     </div>

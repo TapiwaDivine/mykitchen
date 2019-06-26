@@ -10,6 +10,35 @@
 						<p>It's free and only takes a minute </p>
 					</div>
                     <div class="form-field">
+                        {{ form.first_name.label(class="form-control-label") }}
+                    
+                        {% if form.first_name.errors %}
+                            {{ form.first_name(class="form-control form-control-sm is-invalid", size=25) }}
+                            <div class="invalid-feedback">
+                                {% for error in form.first_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.first_name(class="form-control form-control-sm", size=25) }}
+                        {% endif %}
+                        
+                    </div>
+                     <div class="form-field">
+                        {{ form.last_name.label(class="form-control-label") }}
+                    
+                        {% if form.last_name.errors %}
+                            {{ form.last_name(class="form-control form-control-sm is-invalid", size=25) }}
+                            <div class="invalid-feedback">
+                                {% for error in form.last_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.last_name(class="form-control form-control-sm", size=25) }}
+                        {% endif %}
+                    </div>
+                    <div class="form-field">
                         {{ form.username.label(class="form-control-label") }}
                     
                         {% if form.username.errors %}
@@ -22,7 +51,20 @@
                         {% else %}
                             {{ form.username(class="form-control form-control-sm", size=25) }}
                         {% endif %}
-                        
+                    </div>
+                    <div class="form-field">
+                        {{ form.email.label(class="form-control-label") }}
+                    
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control form-control-sm") }}
+                        {% endif %}
                     </div>
                     <div class="form-field">
                         {{ form.password.label(class="form-control-label") }}
@@ -58,3 +100,4 @@
     </div>
 </div>    
 {% endblock %}
+

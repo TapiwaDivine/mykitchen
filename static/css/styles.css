@@ -19,6 +19,7 @@
     
 }
 .inner_nav_menu ul li:nth-child(1) {float: left}
+.inner_nav_menu ul li:nth-child(1):active {background-color: #ee6e73}
 .inner_nav_menu ul li:nth-child(2) {float: left}
 .inner_nav_menu ul li:nth-child(3) {float: left}
 
@@ -37,7 +38,8 @@
     background-color: #ee6e73;
 }
 .inner_nav_menu ul li a:hover{
-    color: #000;
+    background-color: #ee6e73;
+    color: #fff;
 }
 
 #nav_menu{
@@ -102,6 +104,11 @@ h4, h4 {
     padding: 30px;
 }
 
+h5, h5{
+    color:  #ee6e73 ;
+    padding: 15px;
+}
+
 /*--------------------------------------------------------------------------------Footer section-------------*/
 
 #footer .bg-image{
@@ -134,3 +141,4 @@ h4, h4 {
 .success{
     color: green
 }
+/*---------------------------------------------------------------------------------get recipes---------------*/
