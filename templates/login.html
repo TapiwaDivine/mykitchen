@@ -1,8 +1,9 @@
-{% extends 'base.html'%} {% block content %}
+{% extends 'base.html'%} {% set active_page = "login" %}
+{% block content %}
 <div class="container">
     <div class="card mx-auto" style="width: 34rem; ">
         <div class="card-body">
-            <form method="POST" action="url_for('login)">
+            <form method="POST" action="{{ url_for('login')}}">
                 {{ form.hidden_tag() }}<!--Csrf token-->
                 <fieldset class="form-group">
                     <div class="form-header text-center">
@@ -11,11 +12,12 @@
 					</div>
                     <div class="form-field">
                         {{ form.email.label(class="form-control-label") }}
+                    
                         {% if form.email.errors %}
                             {{ form.email(class="form-control form-control-sm is-invalid") }}
                             <div class="invalid-feedback">
                                 {% for error in form.email.errors %}
-                                    <span style="color: red">{{ error }}</span>
+                                    <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
@@ -28,7 +30,7 @@
                             {{ form.password(class="form-control form-control-sm is-invalid", size=20) }}
                             <div class="invalid-feedback">
                                 {% for error in form.password.errors %}
-                                    <span style="color: red">{{ error }}</span>
+                                    <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
@@ -36,8 +38,12 @@
                         {% endif %}
                     </div>
                 </fieldset>
+                <div class="form-field">
+                   {{ form.submit(class="btn-success") }}       
+                </div>
             </form>
         </div>
+        
         <div class="form-base text-center  pb-5">
             <p class="text-muted">
             <strong>Not registered?</strong><a class="ml-2" href="{{ url_for('signup') }}">Sign Up here</a>
@@ -47,3 +53,10 @@
     </div>
 </div>    
 {% endblock %}
+
+
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+</div>

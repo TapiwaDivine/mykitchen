@@ -17,23 +17,30 @@
     
     <link rel="stylesheet" href="{{url_for('static', filename='js/main.js')}}" type="text/css" />
     {% if title %}
-    <title> mykitchen.com/{{ title }} </title>
-    {% else %}
-    <title>mykitchen.com</title>
+        <title> {{ title }} </title>
+        {% else %}
+        <title>mykitchen.com</title>
     {% endif %}
 </head>
 <body>
+    
     <div id="nav_menu">
         <div class="logo">
             <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='images/mykichenlogo.png')}}" alt="My Kitchen" style="width: 150px; height: 120px;"></img></a>
         </div>
         <div class="inner_nav_menu">
+            {% set navigation_bar = [
+                ('/', 'home', 'Home'),
+                ('/get_recipes/', 'get_recipes', 'Recipes'),
+                ('/add_recipe/', 'add_recipe', 'Add Recipe'),
+                ('/signup/', 'signup', 'Signup'),
+                ('/login/', 'login', 'Login')
+            ] %}
             <ul>
-                <li {%- if request.path == "/home" %} class="active" {% endif %}><a href="/home">Home</a></li>
-                <li {%- if request.path == "/get_recipes" %} class="active" {% endif %}><a href="/get_recipes">Recipes</a></li>
-                <li {%- if request.path == "/add_recipe" %} class="active" {% endif %}><a href="/add_recipe">Add Recipes</a></li>
-                <li {%- if request.path == "/signup" %} class="active" {% endif %}><a href="/signup">Sign up</a></li>
-                <li {%- if request.path == "/login" %} class="active" {% endif %}><a href="/login">login</a></li>
+                {% set active_page = active_page|default('home') -%}
+                {% for href, id, caption in navigation_bar %}
+                    <li {% if id == active_page %} class="active"{% endif%}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>

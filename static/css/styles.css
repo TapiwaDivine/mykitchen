@@ -19,7 +19,6 @@
     
 }
 .inner_nav_menu ul li:nth-child(1) {float: left}
-.inner_nav_menu ul li:nth-child(1):active {background-color: #ee6e73}
 .inner_nav_menu ul li:nth-child(2) {float: left}
 .inner_nav_menu ul li:nth-child(3) {float: left}
 
@@ -33,10 +32,11 @@
     padding: 10px 20px;
 }
 
-.inner_nav_menu ul li a:active{
-    color: #fff;
+.active a{
     background-color: #ee6e73;
+    color: #fff;
 }
+
 .inner_nav_menu ul li a:hover{
     background-color: #ee6e73;
     color: #fff;
