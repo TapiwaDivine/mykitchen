@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = "recipes_database"
 app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb+srv://localhost//")
-app.config["SECRET_KEY"] = "190d61e8a37037e29228129682b22ea2"
+app.config["SECRET_KEY"] = os.urandom(24)
 
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
@@ -130,15 +130,14 @@ def signup():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    form = LoginForm(request.form)
-    if request.method == 'POST' and form.validate():
-            user = mongo.db.users.find_one(form.email.data)
-            if user and bcrypt.check_password_hash(user ['password'], form.password.data).is_authenticated:
-                import pdb; pdb.set_trace()
-                login_user(user)
-                flash('You have been logged in!', 'success')
-                return redirect(url_for('home'))
-            
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = mongo.db.users.find_one({'email': form.email.data})
+        if user and bcrypt.check_password_hash(user ['password'], form.password.data):
+            session['user'] = user['username']
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+      
             if user is None:
                 flash('Login Unsuccessful. Please check your login details', 'danger')
                 return render_template('login.html', form=form)
@@ -151,5 +150,3 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
-
-

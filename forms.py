@@ -2,7 +2,14 @@ from flask import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextField, HiddenField 
 from wtforms.validators import DataRequired, Length, Email
+from flask_login import UserMixin
 
+class User(UserMixin):
+    def is_active(self):
+       return True
+    def __repr__(self):
+       return " "
+       
 class RegistrationForm(FlaskForm):
     first_name = StringField('First Name')
     last_name = StringField('Last Name')
