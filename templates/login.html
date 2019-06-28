@@ -3,8 +3,8 @@
 <div class="container">
     <div class="card mx-auto" style="width: 34rem; ">
         <div class="card-body">
-            form method="POST" action="{{ url_for('login') }}">
-                {{ form.hidden_tag() }}<!--Csrf token-->
+            <form method="POST" action="{{ url_for('login') }}">
+               {{form.hidden_tag()}}<!--Csrf token-->
                 <fieldset class="form-group">
                     <div class="form-header text-center">
 						<h2>Login</h2>

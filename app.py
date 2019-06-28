@@ -121,7 +121,6 @@ def signup():
     
         users = mongo.db.users
         users.insert_one(form_data)
-        session['Welcome {}'] = True
         flash('Registration successful!', 'success')
         return redirect(url_for('home'))
     return render_template('signup.html', title='Register', form=form)
@@ -131,27 +130,21 @@ def signup():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    form = LoginForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
             user = mongo.db.users.find_one(form.email.data)
-            if user:
-                if bcrypt.check_password_hash(user ['password'], form.password.data):
-                    login_user(user)
-                    session['logged_in'] = True
-                    flash('You have been logged in!', 'success')
-                    return redirect(url_for('home'))
+            if user and bcrypt.check_password_hash(user ['password'], form.password.data).is_authenticated:
+                import pdb; pdb.set_trace()
+                login_user(user)
+                flash('You have been logged in!', 'success')
+                return redirect(url_for('home'))
             
             if user is None:
                 flash('Login Unsuccessful. Please check your login details', 'danger')
-                return render_template('login.html')
+                return render_template('login.html', form=form)
     
     return render_template('login.html', title='login', form=form)
-    
-@app.route('/logout', methods = ['GET'])
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
+
     
 if __name__ == '__main__':
     
