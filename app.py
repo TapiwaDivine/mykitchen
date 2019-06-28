@@ -57,14 +57,6 @@ def view_recipe(recipe_id):
     return render_template('view_recipe.html', recipe=recipe)
 
   
-"""
-# function to insert likes in the database######################################################################################
-@app.route('upvotes_recipe/<recipe_id>', methods=['POST'])
-def upvotes_recipe(recipe_id):
-    recipe_like = mongo.db.recipes
-    recipe_like.update({'_id': ObjectId(recipe_id)},
-    { '$inc': {'like': 1}})
-"""  
 
 # function to open add recipe page and link the categories select  
 @app.route('/add_recipe')
@@ -91,7 +83,7 @@ def edit_recipe(recipe_id):
                             categories=all_categories)
                             
                             
-# update function to post edited recipe
+# update function to post recipe after it was edited
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
@@ -129,42 +121,37 @@ def signup():
     
         users = mongo.db.users
         users.insert_one(form_data)
+        session['Welcome {}'] = True
         flash('Registration successful!', 'success')
+        return redirect(url_for('home'))
     return render_template('signup.html', title='Register', form=form)
 
 # function to login users
 @app.route('/login', methods=['GET', 'POST'])
-def login():	
-	form = LoginForm(request.form)
-	if request.method == 'POST' and form.validate_on_submit():
-	    form_data = form.data
-	    users = mongo.db.users
-	    users.find_one({"email": form_data["email"], "password": form_data["password"]})
-	    
-	    if form_data["password"] == bcrypt.check_password_hash(form_data["password"], users.find_one({"password"})).encode('utf-8'):
-	        session['username'] = users['username']
-	        flash('login successful', 'success')
-	        return redirect(url_for('home'))
-	return render_template('login.html', title='Login', form=form)
-
-"""
-@app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm(request.form)
-    if form.validate_on_submit():
-        user = mongo.db.users.find_one(form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user)
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
-        
-        if user is None:
-            flash('Login Unsuccessful. Please check your login details', 'danger')
-            return render_template('login.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = LoginForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            user = mongo.db.users.find_one(form.email.data)
+            if user:
+                if bcrypt.check_password_hash(user ['password'], form.password.data):
+                    login_user(user)
+                    session['logged_in'] = True
+                    flash('You have been logged in!', 'success')
+                    return redirect(url_for('home'))
+            
+            if user is None:
+                flash('Login Unsuccessful. Please check your login details', 'danger')
+                return render_template('login.html')
     
-    return render_template('login.html', title='Login', form=form)
-"""            
-
+    return render_template('login.html', title='login', form=form)
+    
+@app.route('/logout', methods = ['GET'])
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
     
 if __name__ == '__main__':
     
