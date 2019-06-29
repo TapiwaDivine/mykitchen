@@ -138,9 +138,9 @@ def login():
             flash('You have been logged in!', 'success')
             return redirect(url_for('home'))
       
-            if user is None:
-                flash('Login Unsuccessful. Please check your login details', 'danger')
-                return render_template('login.html', form=form)
+        if user is None:
+            flash('Login Unsuccessful. Please check your login details', 'danger')
+            return render_template('login.html', form=form)
     
     return render_template('login.html', title='login', form=form)
 
