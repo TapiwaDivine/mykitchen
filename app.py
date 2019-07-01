@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Mongo Config
 
 app.config["MONGO_DBNAME"] = "recipes_database"
-app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb+srv://localhost//")
+app.config["MONGO_URI"] = "mongodb+srv://root:1Britney@myprojectcluster-iqnfp.mongodb.net/recipes_database?retryWrites=true&w=majority"
 app.config["SECRET_KEY"] = os.urandom(24)
 
 mongo = PyMongo(app)
@@ -155,8 +155,6 @@ def breakfast_recipes():
 def brunch_recipes():
     recipe = mongo.db.recipes
     brnchrecipes = recipe.find({"category": "Brunch"})
-    if i (brnchrecipes) > 0:
-        return render_template('norecipesfound.html')
     return render_template('brunch.html', recipes=brnchrecipes)
 
 @app.route('/lunch_recipes')
@@ -201,6 +199,11 @@ def snack_recipes():
     snackrecipes = recipe.find({"category": "Snack"})
     return render_template('snack.html', recipes=snackrecipes)   
 
+@app.route('/recipeofthemth')
+def recipeofthemth():
+    recipe = mongo.db.recipes
+    rotmrecipes = recipe.find().sort('views', pymongo.DESCENDING).limit(1)
+    return render_template('get_recipes.html', recipes=rotmrecipes)
 
 if __name__ == '__main__':
     
