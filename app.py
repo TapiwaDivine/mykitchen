@@ -144,7 +144,64 @@ def login():
     
     return render_template('login.html', title='login', form=form)
 
+#Categories 
+@app.route('/breakfast_recipes')
+def breakfast_recipes():
+    recipe = mongo.db.recipes
+    brkrecipes = recipe.find({"category": "Breakfast"})
+    return render_template('breakfast.html', recipes=brkrecipes)
     
+@app.route('/brunch_recipes')
+def brunch_recipes():
+    recipe = mongo.db.recipes
+    brnchrecipes = recipe.find({"category": "Brunch"})
+    if i (brnchrecipes) > 0:
+        return render_template('norecipesfound.html')
+    return render_template('brunch.html', recipes=brnchrecipes)
+
+@app.route('/lunch_recipes')
+def lunch_recipes():
+    recipe = mongo.db.recipes
+    lunchrecipes = recipe.find({"category": "Lunch"})
+    return render_template('lunch.html', recipes=lunchrecipes)
+    
+@app.route('/dinner_recipes')
+def dinner_recipes():
+    recipe = mongo.db.recipes
+    dinnerrecipes = recipe.find({"category": "Dinner"})
+    return render_template('dinner.html', recipes=dinnerrecipes)
+
+@app.route('/dessert_recipes')
+def dessert_recipes():
+    recipe = mongo.db.recipes
+    dessertrecipes = recipe.find({"category": "Dessert"})
+    return render_template('dessert.html', recipes=dessertrecipes)
+
+@app.route('/starter_recipes')
+def starter_recipes():
+    recipe = mongo.db.recipes
+    starterrecipes = recipe.find({"category": "Starters"})
+    return render_template('starters.html', recipes=starterrecipes)
+    
+@app.route('/sidedish_recipes')
+def sidedish_recipes():
+    recipe = mongo.db.recipes
+    sidedishrecipes = recipe.find({"category": "Side Dish"})
+    return render_template('sidedish.html', recipes=sidedishrecipes)
+    
+@app.route('/maindish_recipes')
+def maindish_recipes():
+    recipe = mongo.db.recipes
+    maindishrecipes = recipe.find({"category": "Starters"})
+    return render_template('starters.html', recipes=maindishrecipes)
+
+@app.route('/snack_recipes')
+def snack_recipes():
+    recipe = mongo.db.recipes
+    snackrecipes = recipe.find({"category": "Snack"})
+    return render_template('snack.html', recipes=snackrecipes)   
+
+
 if __name__ == '__main__':
     
     app.run(host=os.environ.get('IP'),
