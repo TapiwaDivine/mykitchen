@@ -43,7 +43,7 @@ def home():
 @app.route('/get_recipes')
 def get_recipes():
     recipe = mongo.db.recipes
-    newrecipes = recipe.find().sort('date_created', pymongo.DESCENDING)
+    newrecipes = recipe.find().sort('date_created', pymongo.ASCENDING).limit(6)
     return render_template('get_recipes.html', recipes=newrecipes)
 
 
@@ -72,6 +72,7 @@ def insert_recipe():
     form_data['datecreated'] = datetime.utcnow()
     recipes = mongo.db.recipes
     recipes.insert_one(form_data)
+    flash('Submitted','success')
     return redirect(url_for('home'))
     
 # creating function to editing recipes on the web app
@@ -96,10 +97,11 @@ def update_recipe(recipe_id):
         'cooking_time':request.form.get('cooking_time'),
         'serving':request.form.get('serving'),
         'author':request.form.get('author'),
-        'category': request.form.get('category'),
+        'category_name': request.form.get('category_name'),
         'country_of_origin': request.form.get('country_of_origin'),
         'picture': request.form.get('picture')
     })
+    flash('Update successful', 'success')
     return redirect(url_for('home'))
 
 
@@ -107,6 +109,7 @@ def update_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+    flash('Deleted','success')
     return redirect(url_for('get_recipes'))
 
 
@@ -148,55 +151,49 @@ def login():
 @app.route('/breakfast_recipes')
 def breakfast_recipes():
     recipe = mongo.db.recipes
-    brkrecipes = recipe.find({"category": "Breakfast"})
+    brkrecipes = recipe.find({"category_name": "Breakfast"})
     return render_template('breakfast.html', recipes=brkrecipes)
     
 @app.route('/brunch_recipes')
 def brunch_recipes():
     recipe = mongo.db.recipes
-    brnchrecipes = recipe.find({"category": "Brunch"})
+    brnchrecipes = recipe.find({"category_name": "Brunch"})
     return render_template('brunch.html', recipes=brnchrecipes)
 
 @app.route('/lunch_recipes')
 def lunch_recipes():
     recipe = mongo.db.recipes
-    lunchrecipes = recipe.find({"category": "Lunch"})
+    lunchrecipes = recipe.find({"category_name": "Lunch"})
     return render_template('lunch.html', recipes=lunchrecipes)
     
 @app.route('/dinner_recipes')
 def dinner_recipes():
     recipe = mongo.db.recipes
-    dinnerrecipes = recipe.find({"category": "Dinner"})
+    dinnerrecipes = recipe.find({"category_name": "Dinner"})
     return render_template('dinner.html', recipes=dinnerrecipes)
 
 @app.route('/dessert_recipes')
 def dessert_recipes():
     recipe = mongo.db.recipes
-    dessertrecipes = recipe.find({"category": "Dessert"})
+    dessertrecipes = recipe.find({"category_name": "Dessert"})
     return render_template('dessert.html', recipes=dessertrecipes)
 
 @app.route('/starter_recipes')
 def starter_recipes():
     recipe = mongo.db.recipes
-    starterrecipes = recipe.find({"category": "Starters"})
+    starterrecipes = recipe.find({"category_name": "Starters"})
     return render_template('starters.html', recipes=starterrecipes)
     
 @app.route('/sidedish_recipes')
 def sidedish_recipes():
     recipe = mongo.db.recipes
-    sidedishrecipes = recipe.find({"category": "Side Dish"})
+    sidedishrecipes = recipe.find({"category_name": "Side Dish"})
     return render_template('sidedish.html', recipes=sidedishrecipes)
     
-@app.route('/maindish_recipes')
-def maindish_recipes():
-    recipe = mongo.db.recipes
-    maindishrecipes = recipe.find({"category": "Starters"})
-    return render_template('starters.html', recipes=maindishrecipes)
-
 @app.route('/snack_recipes')
 def snack_recipes():
     recipe = mongo.db.recipes
-    snackrecipes = recipe.find({"category": "Snack"})
+    snackrecipes = recipe.find({"category_name": "Snack"})
     return render_template('snack.html', recipes=snackrecipes)   
 
 @app.route('/recipeofthemth')
