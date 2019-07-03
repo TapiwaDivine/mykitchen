@@ -28,7 +28,7 @@
                     <div class="">
                         <ul>
                             <li class="list-inline-item"><i class="material-icons prefix">remove_red_eye</i><h5>Recipe Views :  {{recipe.views}}</h5></li>
-                            <li class="list-inline-item" style="ml-4"><i class="material-icons prefix"><a href="#">thumb_up</a></i><h5>Recipe Likes :  {{ recipe.likes }}</h5></li>
+                            <li class="list-inline-item" style="ml-4"><i class="material-icons prefix"><a href="{{url_for('like_recipe', recipe_id=recipe._id)}}" style="color: #000">thumb_up</a></i><h5>Recipe Likes :  {{ recipe.likes }}</h5></li>
                         </ul>
                     </div>
                 </div>

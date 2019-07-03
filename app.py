@@ -1,4 +1,5 @@
 import os
+import bson
 from dns import resolver
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo, pymongo
@@ -56,7 +57,7 @@ def view_recipe(recipe_id):
     { '$inc': {'views': 1}})
     return render_template('view_recipe.html', recipe=recipe)
 
-  
+
 
 # function to open add recipe page and link the categories select  
 @app.route('/add_recipe')
@@ -70,6 +71,8 @@ def add_recipe():
 def insert_recipe():
     form_data = request.form.to_dict()
     form_data['datecreated'] = datetime.utcnow()
+    form_data['likes'] = 0
+    form_data['views'] = 0
     recipes = mongo.db.recipes
     recipes.insert_one(form_data)
     flash('Submitted','success')
@@ -85,11 +88,12 @@ def edit_recipe(recipe_id):
                             
                             
 # update function to post recipe after it was edited
-@app.route('/update_recipe/<recipe_id>', methods=["POST"])
+@app.route('/edit_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipes = mongo.db.recipes
+    print(recipes)
     recipes.update( {'_id': ObjectId(recipe_id)},
-    {
+    {'$set':{
         'title':request.form.get('title'),
         'description':request.form.get('description'),
         'ingredients': request.form.get('ingredients'),
@@ -100,9 +104,9 @@ def update_recipe(recipe_id):
         'category_name': request.form.get('category_name'),
         'country_of_origin': request.form.get('country_of_origin'),
         'picture': request.form.get('picture')
-    })
+    }})
     flash('Update successful', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('get_recipes'))
 
 
 # function to delete recipe
@@ -112,6 +116,13 @@ def delete_recipe(recipe_id):
     flash('Deleted','success')
     return redirect(url_for('get_recipes'))
 
+#function for users to insert likes
+@app.route('/like_recipe/<recipe_id>')
+def like_recipe(recipe_id):
+    likerecipes = mongo.db.recipes
+    likerecipes.update({"_id": ObjectId(recipe_id)}, { '$inc': {'likes': 1}})
+    return redirect(url_for('like_recipe'))
+    
 
 
 # function to insert recipe in the database
