@@ -1,11 +1,12 @@
 {% extends 'base.html'%} {% set active_page = "get_recipes" %}
 {% block content %}
-    <h4>Living Healthy</h4>
+    <h4></h4>
     <div class="container">
+        {% for recipe in rotmrecipes %}
         <div class="row">
             <div class="col-md-4 text-center">
                 <h5 class="categories-header" style="color:  #DC143C; padding: 15px">Categories</h5>
-                <ul class="list-group-danger">
+                <ul class="list-group-danger" style="margin-top: 50px">
                     <li class="list-group-item"><a style="color: #DC143C" href="{{ url_for('breakfast_recipes') }}">Breakfast</a></li>
                     <li class="list-group-item"><a style="color: #DC143C" href="{{ url_for('brunch_recipes') }}">Brunch</a></li>
                     <li class="list-group-item"><a style="color: #DC143C" href="{{ url_for('lunch_recipes') }}">Lunch</a></li>
@@ -16,25 +17,39 @@
                     <li class="list-group-item"><a style="color: #DC143C" href="{{ url_for('snack_recipes') }}">Snack</a></li>
                 </ul>
             </div>
-            <div class="col-md-8 text-center">
-        
+            <div class="col s12 md8 text-center">
                 <h4 class="categories-header" style="color:  #DC143C; padding: 15px"><i class="material-icons prefix">card_giftcard</i>Recipe Of The Month</h4>
-                
-                <div class="card extra-large">
+                <div class="card large">
                     <div class="card-image">
-                        <img src="{{url_for('static', filename='images/saladd.jpg')}}" style="width: 100%; height: 50%;">
-                        <span class="card-title"></span>
-                        
+                        <img src="{{ recipe.picture  }}" style="width: 100%; height: 300px;">
+                        <span class="card-title">{{ recipe.title }}</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{url_for('view_recipe', recipe_id=recipe._id)}}"><i class="material-icons">more_vert</i></a>
+                    </div>
+                    <div class="card-content">
+                        <h5>Author: {{ recipe.author }}</h5>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="row" style="padding-left: 40px">
+                            <i class="material-icons">remove_red_eye</i>
+                            <p class="card-summary" style="padding-right: 20px">{{ recipe.views }}</p>
+                            <i class="material-icons">favorite_border</i>
+                            <p class="card-summary" style="padding-right: 20px">{{ recipe.likes }}</p>
+                            <i class="material-icons">timelapse</i>
+                            <p class="card-summary" style="padding-right: 20px">{{ recipe.cooking_time}}</p>
+                            <i class="material-icons">restaurant</i>
+                            <p class="card-summary" style="padding-right: 20px">{{ recipe.serving }}</p>
+                        </div>
                     </div>
                 </div>
-                
-            </div>        
+            </div>    
         </div>
+        {% endfor %}
     </div>
     <hr>
     <div class="container">
         <h4>Recent Recipe</h4>
-        {% for recipe_row in recipes | batch(3, '&nbsp;') %}
+        {% for recipe_row in recipes | batch(3,  '&nbsp;') %}
         <div class="row">
             {% for recipe in recipe_row %}
                 <div class="col s12 m6">

@@ -45,8 +45,8 @@ def home():
 def get_recipes():
     recipe = mongo.db.recipes
     newrecipes = recipe.find().sort('date_created', pymongo.ASCENDING).limit(6)
-    return render_template('get_recipes.html', recipes=newrecipes)
-
+    rotmrecipes = recipe.find().sort('likes', pymongo.DESCENDING).limit(1)
+    return render_template('get_recipes.html', recipes=newrecipes, rotmrecipes=rotmrecipes)
 
 # function to view and open the recipe
 @app.route('/view_recipe/<recipe_id>')
@@ -121,8 +121,7 @@ def delete_recipe(recipe_id):
 def like_recipe(recipe_id):
     likerecipes = mongo.db.recipes
     likerecipes.update({"_id": ObjectId(recipe_id)}, { '$inc': {'likes': 1}})
-    return redirect(url_for('like_recipe'))
-    
+    return redirect(url_for('view_recipe', recipe_id=recipe_id))
 
 
 # function to insert recipe in the database
@@ -207,11 +206,6 @@ def snack_recipes():
     snackrecipes = recipe.find({"category_name": "Snack"})
     return render_template('snack.html', recipes=snackrecipes)   
 
-@app.route('/recipeofthemth')
-def recipeofthemth():
-    recipe = mongo.db.recipes
-    rotmrecipes = recipe.find().sort('views', pymongo.DESCENDING).limit(1)
-    return render_template('get_recipes.html', recipes=rotmrecipes)
 
 if __name__ == '__main__':
     

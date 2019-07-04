@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <!--styles link by css-->
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" type="text/css" />
     
@@ -23,26 +23,27 @@
     {% endif %}
 </head>
 <body>
-    <div class="container-fluid">
-        <div id="nav_menu">
-            <div class="logo">
-                <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='images/mykichenlogo.png')}}" alt="My Kitchen" style="width: 150px; height: 120px;"></img></a>
-            </div>
-            <div class="inner_nav_menu">
-                {% set navigation_bar = [
-                    (url_for('home'), 'home', 'Home'),
-                    (url_for('get_recipes'), 'get_recipes', 'Recipes'),
-                    (url_for('add_recipe'), 'add_recipe', 'Add Recipe'),
-                    (url_for('signup'), 'signup', 'Signup'),
-                    (url_for('login'), 'login', 'Login')
-                ] %}
-                <ul>
-                    {% set active_page = active_page|default('home') -%}
-                        {% for href, id, caption in navigation_bar %}
-                        <li {% if id == active_page %} class="active"{% endif%}><a href="{{ href|e }}">{{ caption|e }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
+    
+    <div id="nav">
+        <div class="logo">
+            <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='images/mykichenlogo.png')}}" alt="My Kitchen"></img></a>
+        </div>
+        <div class="inner_nav_menu">
+            {% set navigation_bar = [
+                (url_for('home'), 'home', 'Home'),
+                (url_for('get_recipes'), 'get_recipes', 'Recipes'),
+                (url_for('add_recipe'), 'add_recipe', 'Add Recipe'),
+                (url_for('signup'), 'signup', 'Signup'),
+                (url_for('login'), 'login', 'Login')
+            ] %}
+            <ul>
+                {% set active_page = active_page|default('home') -%}
+                    {% for href, id, caption in navigation_bar %}
+                    <li {% if id == active_page %} class="active"{% endif%}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="True"></i>
         </div>
     </div>
     <div class="container-fluid">

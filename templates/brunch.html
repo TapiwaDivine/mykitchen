@@ -3,7 +3,7 @@
 <h4>Brunch Recipes</h4>
 <div class="container">
     {% for recipe_row in recipes | batch(3, '&nbsp;') %}
-    <div class="row">
+    <div class="row-fluid">
         {% for recipe in recipe_row %}
             <div class="col s12 m6">
                 <div class="card">
