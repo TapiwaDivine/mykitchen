@@ -1,7 +1,7 @@
 import os
-import bson
+import bson, flask
 from dns import resolver
-from flask import Flask, render_template, redirect, request, url_for, flash, session
+from flask import Flask, render_template, redirect, request, url_for, flash, session, abort
 from flask_pymongo import PyMongo, pymongo
 from pymongo import MongoClient
 from flask_bootstrap import Bootstrap
@@ -28,9 +28,6 @@ mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
-# class User(mongo.db.Model):
-#    username = mongo.db.user_profile
-    
 
 # function to display home page and recent recipe card display
 @app.route('/')
@@ -39,6 +36,8 @@ def home():
     recipe = mongo.db.recipes
     poprecipes = recipe.find().sort('views', pymongo.DESCENDING).limit(6)
     return render_template('index.html', recipes=poprecipes)
+    
+    
                             
 # function to open recipes page
 @app.route('/get_recipes')
@@ -47,6 +46,8 @@ def get_recipes():
     newrecipes = recipe.find().sort('date_created', pymongo.ASCENDING).limit(6)
     rotmrecipes = recipe.find().sort('likes', pymongo.DESCENDING).limit(1)
     return render_template('get_recipes.html', recipes=newrecipes, rotmrecipes=rotmrecipes)
+    
+    
 
 # function to view and open the recipe
 @app.route('/view_recipe/<recipe_id>')
@@ -56,7 +57,7 @@ def view_recipe(recipe_id):
     recipe_views.update({'_id': ObjectId(recipe_id)},
     { '$inc': {'views': 1}})
     return render_template('view_recipe.html', recipe=recipe)
-
+    
 
 
 # function to open add recipe page and link the categories select  
@@ -65,6 +66,7 @@ def add_recipe():
     return render_template('add_recipe.html',
                             categories=mongo.db.categories.find())
                             
+    
                             
 # function to insert recipe in the database
 @app.route('/insert_recipe', methods=['POST'])
@@ -78,6 +80,8 @@ def insert_recipe():
     flash('Submitted','success')
     return redirect(url_for('home'))
     
+    
+    
 # creating function to editing recipes on the web app
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -86,6 +90,7 @@ def edit_recipe(recipe_id):
     return render_template('edit_recipe.html', recipe=the_recipe,
                             categories=all_categories)
                             
+    
                             
 # update function to post recipe after it was edited
 @app.route('/edit_recipe/<recipe_id>', methods=["POST"])
@@ -116,12 +121,15 @@ def delete_recipe(recipe_id):
     flash('Deleted','success')
     return redirect(url_for('get_recipes'))
 
+
+
 #function for users to insert likes
 @app.route('/like_recipe/<recipe_id>')
 def like_recipe(recipe_id):
     likerecipes = mongo.db.recipes
     likerecipes.update({"_id": ObjectId(recipe_id)}, { '$inc': {'likes': 1}})
     return redirect(url_for('view_recipe', recipe_id=recipe_id))
+
 
 
 # function to insert recipe in the database
@@ -137,6 +145,8 @@ def signup():
         flash('Registration successful!', 'success')
         return redirect(url_for('home'))
     return render_template('signup.html', title='Register', form=form)
+
+
 
 # function to login users
 @app.route('/login', methods=['GET', 'POST'])
@@ -156,6 +166,8 @@ def login():
             return render_template('login.html', form=form)
     
     return render_template('login.html', title='login', form=form)
+
+
 
 #Categories 
 @app.route('/breakfast_recipes')
@@ -205,7 +217,7 @@ def snack_recipes():
     recipe = mongo.db.recipes
     snackrecipes = recipe.find({"category_name": "Snack"})
     return render_template('snack.html', recipes=snackrecipes)   
-
+    
 
 if __name__ == '__main__':
     

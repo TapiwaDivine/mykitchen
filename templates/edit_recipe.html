@@ -1,86 +1,76 @@
 {% extends 'base.html'%} 
 {% block content %}
 <h4>Edit Recipe</h4>
-<div class="container">
-    <div class="row-fluid">
-        <form action="{{ url_for('edit_recipe', recipe_id=recipe._id)}}" method="POST" class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">assignment</i>
-                    <textarea name="title" id="title" class="materialize-textarea" placeholder="Name of Recipe">{{ recipe.title }}</textarea>
-                    <label for="recipe_title">Title</label>
-                </div>
+<div class="row">
+    <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">assignment</i>
+                <input id="title" name="title" class="validate" placeholder="Give your recipe a name" value="{{ recipe.title }}">
+                <label for="recipe_title"></label>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
-                    <textarea name="description" id="description" class="materialize-textarea" placeholder="Tell us about your recipe">{{ recipe.description }}</textarea>
-                    <label for="description">Description</label>
-                </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">poll</i>
+                <select multiple id="category_name" name="category_name">
+                    <option value=""disabled selected>Choose Category</option>
+                    {% for cat in categories %}
+                    <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                    {% endfor %}
+                </select>
+                <label>Choose Category</label>
             </div>
-            <div class="row">
-                 <div class="input-field col s12">
-                    <i class="material-icons prefix">shopping_basket</i>
-                    <textarea name="ingredients" id="ingredients" class="materialize-textarea" placeholder="Add Ingredients separate with a comma and space">{{ recipe.ingredients }}</textarea>
-                    <label for="Ingredients">Ingredients</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">subject</i>
+                <textarea name="description" id="description" class="materialize-textarea" placeholder="Tell us about your recipe">{{ recipe.description }}</textarea>
+                <label for="description">Description</label>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">room_service</i>
-                    <textarea name="method" id="method" class="materialize-textarea" placeholder="Add preparation step">{{ recipe.method }}</textarea>
-                    <label for="method">method</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">timer</i>
+                <input id="cooking_time" name="cooking_time" class="validate" placeholder="add cooking time in mins" value="{{ recipe.cooking_time }}">
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">timer</i>
-                    <textarea name="cooking_time" id="cooking_time" class="materialize-textarea" placeholder="add cooking time in mins">{{ recipe.cooking_time }}</textarea>
-                    <label for="cooking_time">Cooking Time</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">restaurant</i>
-                    <textarea name="serving" id="serving" class="materialize-textarea" placeholder="number of people this served">{{ recipe.serving }}</textarea>
-                    <label for="serving">Serving</label>
-                </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">restaurant</i>
+                <input id="serving" name="serving" class="validate" placeholder="number of people this served" value="{{ recipe.serving}}">
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">image</i>
-                    <textarea name="picture" id="picture" class="materialize-textarea" placeholder="Insert Imagine link">{{ recipe.picture }}</textarea>
-                    <label for="picture">Imagine</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">person_add</i>
-                    <textarea name="author" id="author" class="materialize-textarea" placeholder="Enter your name">{{ recipe.author }}</textarea>
-                    <label for="serving">Author</label>
-                </div>
+        </div>
+        <div class="row">
+             <div class="input-field col s12">
+                <i class="material-icons prefix">shopping_basket</i>
+                <textarea name="ingredients" id="ingredients" class="materialize-textarea" placeholder="Add Ingredients separate with a comma and space">{{ recipe.ingredients }}</textarea>
+                <label for="Ingredients">Ingredients</label>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">poll</i>
-                    <select multiple id="category_name" name="category_name">
-                        <option value=""disabled selected>Choose Category</option>
-                        {% for cat in categories %}
-                            {% if cat.category_name == recipe.category %}
-                                <option value="{{cat.category_name}}" selected>{{cat.category_name}}</option>
-                            {% else %}
-                            <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                    <label>Category</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">location_on</i>
-                    <textarea name="country_of_origin" id="country_of_origin" class="materialize-textarea" placeholder="Origin Country">{{ recipe.country_of_origin }}</textarea>
-                    <label for="country_of_origin">Country of Origin</label>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">room_service</i>
+                <textarea name="method" id="method" class="materialize-textarea" placeholder="Add preparation step">{{ recipe.method}}</textarea>
+                <label for="method">method</label>
             </div>
-            <button class="btn waves-effect red accent-1" type="submit" method="POST">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </form>
-    </div>
-</div>        
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">image</i>
+                <input id="picture" name="picture" class="validate" placeholder="Insert Imagine link" value="{{ recipe.picture }}">
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">person_add</i>
+                <input id="author"  name="author" class="validate" placeholder="Add your name / Author" value="{{ recipe.author}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">location_on</i>
+                <input id="country_of_origin" name="country_of_origin" class="validate" placeholder="Enter Recipe Cuisine" value="{{ recipe.country_of_origin }}">
+            </div>
+        </div>
+        <button class="btn waves-effect red accent-1" type="submit" method="POST">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>
+        
 {% endblock %}

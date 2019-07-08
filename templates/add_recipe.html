@@ -2,13 +2,22 @@
 {% block content %}
 <h4>Add Recipe</h4>
 <div class="container">
-    <div class="row-fluid">
+    <div class="row">
         <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12">
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s6">
                     <i class="material-icons prefix">assignment</i>
-                    <textarea name="title" id="title" class="materialize-textarea" placeholder="Name of Recipe"></textarea>
-                    <label for="recipe_title">Title</label>
+                    <input id="title" name="title" class="validate" placeholder="Give your recipe a name">
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">poll</i>
+                    <select multiple id="category_name" name="category_name">
+                        <option value=""disabled selected>Choose Category</option>
+                        {% for cat in categories %}
+                        <option value="{{cat.category_name}}">{{cat.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Choose Category</label>
                 </div>
             </div>
             <div class="row">
@@ -16,6 +25,16 @@
                     <i class="material-icons prefix">subject</i>
                     <textarea name="description" id="description" class="materialize-textarea" placeholder="Tell us about your recipe"></textarea>
                     <label for="description">Description</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">timer</i>
+                    <input id="cooking_time" name="cooking_time" class="validate" placeholder="add cooking time in mins">
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">restaurant</i>
+                    <input id="serving" name="serving" class="validate" placeholder="number of people this served">
                 </div>
             </div>
             <div class="row">
@@ -34,43 +53,18 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <i class="material-icons prefix">timer</i>
-                    <textarea name="cooking_time" id="cooking_time" class="materialize-textarea" placeholder="add cooking time in mins"></textarea>
-                    <label for="cooking_time">Cooking Time</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">restaurant</i>
-                    <textarea name="serving" id="serving" class="materialize-textarea" placeholder="number of people this served"></textarea>
-                    <label for="serving">Serving</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
                     <i class="material-icons prefix">image</i>
-                    <textarea name="picture" id="picture" class="materialize-textarea" placeholder="Insert Imagine link"></textarea>
-                    <label for="picture">Imagine</label>
+                    <input id="picture" name="picture" class="validate" placeholder="Insert Imagine link">
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">person_add</i>
-                    <textarea name="author" id="author" class="materialize-textarea" placeholder="Enter your name"></textarea>
-                    <label for="serving">Author</label>
+                    <input id="author"  name="author" class="validate" placeholder="Add your name / Author">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <i class="material-icons prefix">poll</i>
-                    <select multiple id="category_name" name="category_name">
-                        <option value=""disabled selected>Choose Category</option>
-                        {% for cat in categories %}
-                        <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Category</label>
-                </div>
-                <div class="input-field col s6">
                     <i class="material-icons prefix">location_on</i>
-                    <textarea name="country_of_origin" id="country_of_origin" class="materialize-textarea" placeholder="Origin Country"></textarea>
-                    <label for="country_of_origin">Country of Origin</label>
+                    <input id="country_of_origin" name="country_of_origin" class="validate" placeholder="Enter Recipe Cuisine">
                 </div>
             </div>
             <button class="btn waves-effect red accent-1" type="submit" method="POST">Submit

@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--Materialize icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Materialize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
@@ -21,6 +18,7 @@
         {% else %}
         <title>mykitchen.com</title>
     {% endif %}
+    <script src="https://kit.fontawesome.com/c378931d12.js"></script>
 </head>
 <body>
     
@@ -42,8 +40,6 @@
                     <li {% if id == active_page %} class="active"{% endif%}><a href="{{ href|e }}">{{ caption|e }}</a></li>
                 {% endfor %}
             </ul>
-        </div>
-        <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="True"></i>
         </div>
     </div>
     <div class="container-fluid">
@@ -101,12 +97,12 @@
     <!-- Footer -->
 <!--Materialize jquery and javascript-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
-<!--Bootstrap Js and Jquery support-->
 <script type="text/javascript">
    $(document).ready(function() {
-       $('select').formSelect();
+       $('select').material_select();
+       $('.button-collapse').sideNav('show');
    });
 </script>
 </body>

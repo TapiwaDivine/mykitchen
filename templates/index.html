@@ -4,6 +4,7 @@
 <div class="container-fluid">
     <section id="showcase">
         <div class="bg-image">
+            <h1 class="text-center" style="padding-top: 200px; font-weight: 800">Looking for healthy recipes or ideas? <br> We’ve more than many recipes to choose from,<br> So sign up and join our recipe collection commuinty </h1>
         </div>
     </section>
 </div>
@@ -11,31 +12,29 @@
 <h4>Popular Recipes</h4>
 <div class="container">
     {% for recipe_row in recipes | batch(3, '&nbsp;') %}
-        <div class="row">
-           {% for recipe in recipe_row %}
-                <div class="col s12 m6">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{ recipe.picture  }}" style="width: 100%; height: 200px;">
-                            <span class="card-title">{{ recipe.title }}</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red" href="{{url_for('view_recipe', recipe_id=recipe._id)}}"><i class="material-icons">more_vert</i></a>
-                        </div>
-                        <div class="card-content">
-                            <h5>Author: {{ recipe.author }}</h5>
-                            <p>{{ recipe.description }}</p>
-                        </div>
-                        <div class="card-content">
-                            <div class="row" style="padding-left: 40px">
-                                <i class="material-icons">remove_red_eye</i>
-                                <p class="card-summary" style="padding-right: 20px">{{ recipe.views }}</p>
-                                <i class="material-icons">favorite_border</i>
-                                <p class="card-summary" style="padding-right: 20px">{{ recipe.likes }}</p>
-                                <i class="material-icons">timelapse</i>
-                                <p class="card-summary" style="padding-right: 20px">{{ recipe.cooking_time}}</p>
-                                <i class="material-icons">restaurant</i>
-                                <p class="card-summary" style="padding-right: 20px">{{ recipe.serving }}</p>
+        <div class="card-deck">
+            {% for recipe in recipe_row %}
+                <div class="card mb-5">
+                    <img src="{{ recipe.picture }}" class="card-img-top mw-300px" alt="Recipe image">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h5 class="card-title">{{ recipe.title }}</h5>
+                            </div>
+                            <div class="col-3">
+                                <a href="{{url_for('view_recipe', recipe_id=recipe._id)}}"><button class="btn btn-danger rounded-circle"><i class="fa fa-ellipsis-v"></i></button></a>
                             </div>
                         </div>
+                        <p class="card-text">{{ recipe.description }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-title"><i class="fa fa-user-circle"></i>    <strong>Author: {{ recipe.author }}</strong></h5>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-text ml-3"><i class="fa fa-eye"></i> {{ recipe.views }}</span>
+                        <span class="card-text ml-3"><i class="fa fa-heart"></i> {{ recipe.likes  }}</span>    
+                        <span class="card-text ml-3"><i class="fa fa-utensils"></i> {{ recipe.cooking_time }}</span>
+                        <span class="card-text ml-3"><i class="fa fa-concierge-bell"></i> {{ recipe.serving }}</span>
                     </div>
                 </div>
             {% endfor %}
@@ -47,7 +46,25 @@
 <div class="container-fluid">
     <section id="footer">
         <div class="bg-image">
-            
+            <div class="row" style="padding-top: 200px">
+                <div class="col-md-6">
+                    <div class="container">
+                        <h3 class="text-uppercase font-weight-bold">Contact</h3>
+                        <hr class="white mb-1 mt-0 d-inline-block mx-1" style="width: 60px;">
+                        <p style="font-size: 18px"><i class="fa fa-home mr-1"></i> New York, NY 10012, US</p>
+                        <p style="font-size: 18px"><i class="fa fa-envelope mr-1"></i> info@mykitchen.com</p>
+                        <p style="font-size: 18px"><i class="fa fa-phone mr-1"></i> + 01 234 567 88</p>
+                        <p style="font-size: 18px"><i class="fa fa-print mr-1"></i> + 01 234 567 89</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container">
+                        <h3 class="text-uppercase font-weight-bold">About Us</h3>
+                        <hr class="white mb-1 mt-0 d-inline-block mx-1" style="width: 60px;">
+                        <p style="font-size: 18px">This is a plaform is a information<br> hub for recipes. All the recipes are<br> added but users and visitor to <br>this site. Get insipired or Inspire <br>other by joining our ever expaning <br>community of cooking enthuasiast.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
