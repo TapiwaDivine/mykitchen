@@ -32,7 +32,7 @@ python, flask, pymongo, and mongodb.
 * the Logo on this web app was created through freelogodesign.com
 * This web app is responsive and can be used in most screen
 * On this web app all the pages have a footer with social media link and copy right section and a navbar that was created to have a logo on the center(YouTube channel Learning with Ali Hossain,7months ago) and (mdbootstrap.com)
-* Then we also have a hero image on top of the homepage and on the footer as well. These i meant to beautify the home page(insipered by bigoven.com) and give user that anticipation to do around the site. We also have the render of recipes which is limited to 6. this i was insipred by(https://tajinny.com/) though i added my own feel
+* Then we also have a hero image on top of the homepage and on the footer as well. These i meant to beautify the home page(insipered by bigoven.com) and give user that anticipation to do around the site. We also have the render of recipes which is limited to 6 recipes in 3x2 rows. this i was insipred by(https://tajinny.com/) though i added my own feel
 * We have recipe of the that is insiped by most likes to a recipe by users.
 * We also render recent recipe in the recipe page and also th categories of recipes
 * We also have a add recipe page which present users with a form to add recipes to the web app
