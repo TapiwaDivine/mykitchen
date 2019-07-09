@@ -21,16 +21,9 @@
 .inner_nav_menu ul li:nth-child(2) {float: left}
 .inner_nav_menu ul li:nth-child(3) {float: left}
 
-@media(max-width: 600px) { 
-.inner_nav_menu ul li a {
-    padding: 5px 10px;
-    font-size: 10px;
-}
-}
-
 .inner_nav_menu ul li a{
     color: #DC143C;
-    font-size: 1.3rem;
+    font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
     text-decoration: none;
@@ -56,6 +49,10 @@
 .logo a img {
         display: none!important
     }
+    .inner_nav_menu ul li a {
+        padding: 5px 10px;
+        font-size: 10px;
+}
 }
 
 .logo{
@@ -158,6 +155,6 @@ h5, h5{
 }
 /*------------------------------------------------------------------------------------social media links------------*/
 
- .fa:hover{
+.fab:hover{
 color: grey;
 }
