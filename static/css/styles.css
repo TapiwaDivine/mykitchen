@@ -1,10 +1,4 @@
 /*-----------------------------------------------------------------header and nav sections------ */
-@media(max-width: 600px) { 
-.inner_nav_menu {
-        
-    }
-}
-
 .inner_nav_menu {
     margin: 0 auto;
     width: 100%;
@@ -26,6 +20,13 @@
 .inner_nav_menu ul li:nth-child(1) {float: left}
 .inner_nav_menu ul li:nth-child(2) {float: left}
 .inner_nav_menu ul li:nth-child(3) {float: left}
+
+@media(max-width: 600px) { 
+.inner_nav_menu ul li a {
+    padding: 5px 10px;
+    font-size: 10px;
+}
+}
 
 .inner_nav_menu ul li a{
     color: #DC143C;
@@ -155,10 +156,9 @@ h5, h5{
 .success{
     color: green
 }
-/*------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------social media links------------*/
 
-.text-center {
-    font-size: 30px;
-    font-weight: 800;
-    
+ a .fa-lg:hover{
+
+color: grey;
 }
