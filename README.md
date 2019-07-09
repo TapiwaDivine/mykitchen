@@ -23,7 +23,8 @@ python, flask, pymongo, and mongodb.
 2. Colour: The theme colour of this project is Red and white images from showcase, footer and recipes also contribute in beautifiying this web app.
 3. Pages : This web app has about 16 pages which can be openned through either navbar, categories and viewing recipes
 4. Mock up: I did a sketch on paper then did this mock up on [figma.com](https://www.figma.com/file/WE8kATa6uxCL4YJVQJzjuRze/MyKitchen-Mockup?node-id=0%3A1, i also used a logo made  at freelogodesign.com) and also the database design was done on a piece of paper
-
+![Frontend paper sketch](https://res.cloudinary.com/deesjttvu/image/upload/v1562672577/IMG_20190709_114340_amplce.jpg)
+![backend paper sketch](https://res.cloudinary.com/deesjttvu/image/upload/v1562672604/IMG_20190518_111112_vmagej.jpg)
 
 ## Features
 
