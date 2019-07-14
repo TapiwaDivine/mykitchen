@@ -3,74 +3,71 @@
 <h4>Add Recipe</h4>
 <div class="container">
     <div class="row">
-        <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">assignment</i>
-                    <input id="title" name="title" class="validate" placeholder="Give your recipe a name">
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">poll</i>
-                    <select multiple id="category_name" name="category_name">
-                        <option value=""disabled selected>Choose Category</option>
-                        {% for cat in categories %}
-                        <option value="{{cat.category_name}}">{{cat.category_name}}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Choose Category</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">subject</i>
-                    <textarea name="description" id="description" class="materialize-textarea" placeholder="Tell us about your recipe"></textarea>
-                    <label for="description">Description</label>
+        <form action="{{ url_for('insert_recipe')}}" method="POST" class="col-sm-12 pb-5" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="title"><strong>Recipe Name</strong></label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter recipe name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="selectpicker btn-default" id="category_name"  name="category_name" style="margin-top: 30px; padding-bottom: 15px; padding-right: 90px;" required>
+                            <option value=""disabled selected>Choose Category</option>
+                            {% for cat in categories %}
+                            <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">timer</i>
-                    <input id="cooking_time" name="cooking_time" class="validate" placeholder="add cooking time in mins">
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">restaurant</i>
-                    <input id="serving" name="serving" class="validate" placeholder="number of people this served">
+            <div class="form-group">
+                <label for="description"><strong>Description</strong></label>
+                <textarea class="form-control" id="description" name="description" aria-label="With textarea" required></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label for="cooking_time"><strong>Cooking Time</strong></label>
+                        <input type="text" class="form-control" id="cooking_time" placeholder="Time hr/mins" required>
+                    </div>
+                    <div class="col">
+                        <label for="serving"><strong>Serving</strong></label>
+                        <input type="text" class="form-control" id="serving" placeholder="Enter number of people your recipe serve" required>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                 <div class="input-field col s12">
-                    <i class="material-icons prefix">shopping_basket</i>
-                    <textarea name="ingredients" id="ingredients" class="materialize-textarea" placeholder="Add Ingredients separate with a comma and space"></textarea>
-                    <label for="Ingredients">Ingredients</label>
+            <div class="form-group">
+                <label for="ingredients"><strong>Ingredients</strong></label>
+                <textarea class="form-control" id="ingredients" name="ingredients" aria-label="With textarea" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="method"><strong>Method</strong></label>
+                <textarea class="form-control" id="method" name="method" aria-label="With textarea" required></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label for="picture"><strong>Image</strong></label>
+                        <input type="text" class="form-control" id="picture" name="picture" placeholder="paste image link" required>
+                    </div>
+                    <div class="col">
+                        <label for="author"><strong>Author</strong></label>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Add your name as Author" required>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">room_service</i>
-                    <textarea name="method" id="method" class="materialize-textarea" placeholder="Add preparation step"></textarea>
-                    <label for="method">method</label>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label for="country_of_origin"><strong>Origin Country</strong></label>
+                        <input type="text" class="form-control" id="country_of_origin" name="country_of_origin"  placeholder="Enter Origin Country" required>
+                    </div>
+                    <div class="col">
+                        
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">image</i>
-                    <input id="picture" name="picture" class="validate" placeholder="Insert Imagine link">
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">person_add</i>
-                    <input id="author"  name="author" class="validate" placeholder="Add your name / Author">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">location_on</i>
-                    <input id="country_of_origin" name="country_of_origin" class="validate" placeholder="Enter Recipe Cuisine">
-                </div>
-            </div>
-            <button class="btn waves-effect red accent-1" type="submit" method="POST">Submit
-                <i class="material-icons right">send</i>
-            </button>
+            <button type="submit" method="POST" class="btn btn-outline-success btn-lg">Submit  <i class="fas fa-paper-plane"></i></button>
         </form>
     </div>
-</div>        
 {% endblock %}

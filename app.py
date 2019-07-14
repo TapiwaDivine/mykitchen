@@ -1,5 +1,5 @@
 import os
-import bson, flask
+import flask
 from dns import resolver
 from flask import Flask, render_template, redirect, request, url_for, flash, session, abort
 from flask_pymongo import PyMongo, pymongo

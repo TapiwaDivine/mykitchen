@@ -58,6 +58,13 @@ python, flask, pymongo, and mongodb.
 5. Figma was my mockup platform of choice it worked fantastic form me.
 
 ## Testing
+- Login Form and Signup
+    - both form are tested for with empty submition which both of which will request user to enter information in required fieldset
+    - both forms require valid emails as they will not accept invalid email
+    - both form have feedback on submission if the submition is successful
+- Mobile Responsive
+    - This web-app is mostly responsive in all screens
+    - i tested most screen and they are working well
 - Testing on this project was done manually using developer toools to test the website
 - I also openned each page to check and see if there are any bug or frontend errors.
 

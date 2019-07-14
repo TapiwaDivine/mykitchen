@@ -140,7 +140,7 @@ h5, h5{
     transition: .5s;
 }
 
-/*--------------------------------------------------------------------------------sign up section--------*/
+/*--------------------------------------------------------------------------------Forms section--------*/
 .btn-success {
   padding: 14px 20px;
   margin: 8px 0;
@@ -152,4 +152,39 @@ h5, h5{
 
 .success{
     color: green
+}
+
+a .fab {
+    color: white;
+}
+
+.card {
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.form-control-sm, 
+.input-group-sm>.form-control,
+.input-group-sm>.input-group-append>.btn,
+.input-group-sm>.input-group-append>.input-group-text,
+.input-group-sm>.input-group-prepend>.btn, 
+.input-group-sm>.input-group-prepend>.input-group-text{
+    -webkit-appearance:none;
+    outline:none;
+    border:none;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    
+}
+
+input[type=text]{
+   -webkit-appearance:none;
+   outline:none;
+   border:none;
+   border-bottom: 1px solid;
+   border-radius: 0px;
+}
+/*--------------------------------------------------------*/
+.card-text> .likes> .fa{
+    color: #DC143C
 }
