@@ -30,17 +30,41 @@ python, flask, pymongo, and mongodb.
 
 ### Existing Features
 * This web app has 16 pages and the database supporting it has 24 documents
-* the Logo on this web app was created through freelogodesign.com
-* This web app is responsive and can be used in most screen
-* On this web app all the pages have a footer with social media link and copy right section and a navbar that was created to have a logo on the center(YouTube channel Learning with Ali Hossain,7months ago) and (mdbootstrap.com)
-* Then we also have a hero image on top of the homepage and on the footer as well. These i meant to beautify the home page(insipered by bigoven.com) and give user that anticipation to do around the site. We also have the render of recipes which is limited to 6 recipes in 3x2 rows. this i was insipred by(https://tajinny.com/) though i added my own feel
-* We have recipe of the that is insiped by most likes to a recipe by users.
-* We also render recent recipe in the recipe page and also th categories of recipes
-* We also have a add recipe page which present users with a form to add recipes to the web app
-* We also have the view recipe which can be access when user clicks a red button with 3 dots in each recipe. through this avenue user can either edit or delete their recipes.
-* We also have the signup form and the login form ready use by users(YouTube channels Pretty Printed and Corey Schafer) helped understanding and implematation of these 2
+* There are 5 key sections on this webapp:
+    - landing page/ home page
+    - Recipes page
+    - Add Recipe page
+    - Signup page
+    - Login page
+
+- Common features
+    * Each section has a responsive design and navigation bar with a logo on the which i was created through freelogodesign.com (is also linked to home page) and other menu items to the right and to the left side of the logo that take you to each page accordingly.
+    * At the bottom there is a footer which include copyright and social media icons.
+    * Recipes Cards display the Recipe Image, Recipe Name, Basic descrption of the recipe, recipe author and views, likes, cooking time and number of people the recipe serves
+    * Add Recipe forms and Edit Recipe forms these provide fields that will be set i the database 
+
+- Landing page/Home page
+    * The home page has a hero image with a call to action and a signup button(inspired by bigoven.com)
+    * I also has a section form the popular recipes with most views which is limited to 6 recipes in 3x2 rows. this i was insipred by(https://tajinny.com/) though i added my own feel
+    * the page closes with a hero footer which has contacts and a brief about us
+    
+- Recipes page 
+    * has a Recipe Of the Month with is elected by most likes
+    * And has categories column to view recipes by category
+    * this page also has a section for recent recipes structed by date created
+
+- View Recipe
+    * The view recipe is access when user clicks a red button with 3 dots in each recipe
+    * View recipe gives all the the details on the recipe collected in the collection
+    * there is also a thumb up handle that collects likes
+    * at th bottom the is an edit and a delete button which are all functioning well
+
+- Signup and Login(YouTube channels Pretty Printed and Corey Schafer, helped understanding and implematation of these 2) 
+    * signup page offer a signup form for user and password encryption with bcrypt when submitted and also a link to the login page
+    * login provides a basic form which users login and using an email or password
 
 ### Features Left to Implement
+
 - Features Left to Implement to implement include a user dashboard when they login and controls over who can edit a recipe or delete it
 - Also in the recipe views we cold use videos in steady of images
 - Also when a user login the display of the user image  and a logout button could make a difference
@@ -51,20 +75,33 @@ python, flask, pymongo, and mongodb.
 
 
 ## Technologies Used
-1. In this project i used pyhon framework flask, pymongo, mongodb, jinja2, flask-bcrypt to bring together the front and the backend
-2. This project was styled by Bootstrap and Materializecss taking different section each to come up with nice designs that will no conflict with each other
+1. In this project i used:
+    * python framework Flask
+    * dnspython
+    * pymongo
+    * mongodb
+    * jinja2
+    * flask-bcrypt 
+    * wt-forms
+    * Heroku
+2. This project was styled with Bootstrap, fontawesome and Css
 3. I used [mongo atlas](mongodb.com) as the server
-4. I also used cloudinary.com to store all pictures and render them links
+4. I also used [cloudinary](cloudinary.com) to store all pictures and render them links
 5. Figma was my mockup platform of choice it worked fantastic form me.
 
 ## Testing
+- All code were validated through:
+    - [W3C Mark-up Validation Service](https://validator.w3.org/)
+    - [W3C CSS Validation Service](http://www.css-validator.org/)
+- Add Recipe And Edit Recipe forms
+    - I tested both form and forms are functioning well and have a required element to make sure that no field will be empty
 - Login Form and Signup
     - both form are tested for with empty submition which both of which will request user to enter information in required fieldset
     - both forms require valid emails as they will not accept invalid email
     - both form have feedback on submission if the submition is successful
 - Mobile Responsive
-    - This web-app is mostly responsive in all screens
-    - i tested most screen and they are working well
+    - This web-app is mostly responsive in most screens i have tested it on Iphone X, Huawei Psmart2019,Windows Chrome browser and Opera browser
+    - To note is that there is bug on the signup and login nav link as they are unclickable on the mobile screens
 - Testing on this project was done manually using developer toools to test the website
 - I also openned each page to check and see if there are any bug or frontend errors.
 
