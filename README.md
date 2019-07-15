@@ -94,7 +94,7 @@ python, flask, pymongo, and mongodb.
     - [W3C Mark-up Validation Service](https://validator.w3.org/)
     - [W3C CSS Validation Service](http://www.css-validator.org/)
 - Add Recipe And Edit Recipe forms
-    - I tested both form and forms are functioning well and have a required element to make sure that no field will be empty
+    - I tested both form and forms are functioning well and have a required element to make sure that no field will be empty. At first the form was submitting  without any data
 - Login Form and Signup
     - both form are tested for with empty submition which both of which will request user to enter information in required fieldset
     - both forms require valid emails as they will not accept invalid email
@@ -128,7 +128,6 @@ python, flask, pymongo, and mongodb.
 
 ### Content
 - getboostrap.com were i accessed code for all the bootstrap in this project
-- Materializecss.com were all the other styles thata re not boostrap came from
 - Stack overflow were most of my solutions came from
 - Code Institute most of the layout in the project were from the lessons source
 - W3schools.com - helpful in this project also
