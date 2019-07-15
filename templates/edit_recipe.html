@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title"><strong>Recipe Name</strong></label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter recipe name" value="{{ recipe.title }}">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter recipe name" value="{{ recipe.title }}" required>
                     </div>
                     <div class="col-md-6">
                         <select class="selectpicker btn-outline-danger" id="category_name"  name="category_name" style="margin-top: 30px; padding-bottom: 15px; padding-right: 90px;">
@@ -28,11 +28,11 @@
                 <div class="row">
                     <div class="col">
                         <label for="cooking_time"><strong>Cooking Time</strong></label>
-                        <input type="text" class="form-control" id="cooking_time" placeholder="Time hours/mins" value="{{recipe.cooking_time}}">
+                        <input type="text" class="form-control" id="cooking_time" name="cooking_time" placeholder="Time hours/mins" value="{{recipe.cooking_time}}" required>
                     </div>
                     <div class="col">
                         <label for="serving"><strong>Serving</strong></label>
-                        <input type="text" class="form-control" id="serving" placeholder="Enter number of people your recipe serve" value="{{recipe.serving}}">
+                        <input type="text" class="form-control" id="serving" name="serving" placeholder="Enter number of people your recipe serve" value="{{recipe.serving}}" required>
                     </div>
                 </div>
             </div>
