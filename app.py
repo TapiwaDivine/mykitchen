@@ -54,10 +54,8 @@ def get_recipes():
 def view_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     recipe_views = mongo.db.recipes   
-    recipe_views.update({'_id': ObjectId(recipe_id)},
-    { '$inc': {'views': 1}})
+    recipe_views.update({'_id': ObjectId(recipe_id)}, { '$inc': {'views': 1}})
     return render_template('view_recipe.html', recipe=recipe)
-    
 
 
 # function to open add recipe page and link the categories select  
@@ -76,9 +74,10 @@ def insert_recipe():
     form_data['likes'] = 0
     form_data['views'] = 0
     recipes = mongo.db.recipes
-    recipes.insert_one(form_data)
-    flash('Submitted','success')
-    return redirect(url_for('home'))
+    if recipes.insert_one(form_data):
+        flash('Submitted','success')
+        return redirect(url_for('home'))
+    return abort(500)
     
     
     
@@ -92,36 +91,33 @@ def edit_recipe(recipe_id):
                             
     
                             
-# update function to post recipe after it was edited
-@app.route('/edit_recipe/<recipe_id>', methods=["POST"])
+# update function to post recipe after it is edited
+@app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    recipes = mongo.db.recipes
-    print(recipes)
-    recipes.update( {'_id': ObjectId(recipe_id)},
+    recipe = mongo.db.recipes
+    recipe.update( {'_id': ObjectId(recipe_id)},
     {'$set':{
-        'title':request.form.get('title'),
-        'description':request.form.get('description'),
-        'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method'),
-        'cooking_time':request.form.get('cooking_time'),
-        'serving':request.form.get('serving'),
-        'author':request.form.get('author'),
-        'category_name': request.form.get('category_name'),
-        'country_of_origin': request.form.get('country_of_origin'),
-        'picture': request.form.get('picture')
+            'title':request.form.get('title'),
+            'description':request.form.get('description'),
+            'ingredients': request.form.get('ingredients'),
+            'method': request.form.get('method'),
+            'cooking_time':request.form.get('cooking_time'),
+            'serving':request.form.get('serving'),
+            'author':request.form.get('author'),
+            'category_name': request.form.get('category_name'),
+            'country_of_origin': request.form.get('country_of_origin'),
+            'picture': request.form.get('picture')
     }})
     flash('Update successful', 'success')
     return redirect(url_for('get_recipes'))
 
-
 # function to delete recipe
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-    flash('Deleted','success')
-    return redirect(url_for('get_recipes'))
-
-
+    if mongo.db.recipes.remove({'_id': ObjectId(recipe_id)}):
+        flash('Deleted','success')
+        return redirect(url_for('get_recipes'))
+    return abort(404)
 
 #function for users to insert likes
 @app.route('/like_recipe/<recipe_id>')
@@ -141,9 +137,12 @@ def signup():
         form_data['password'] = bcrypt.generate_password_hash(str(form.password.data).encode('utf-8'))
     
         users = mongo.db.users
-        users.insert_one(form_data)
-        flash('Registration successful!', 'success')
-        return redirect(url_for('home'))
+        if users.insert_one(form_data):
+            flash('Registration successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Registration Failed!', 'warning')
+            return render_template('signup.html', title='Register', form=form)
     return render_template('signup.html', title='Register', form=form)
 
 
@@ -216,8 +215,8 @@ def sidedish_recipes():
 def snack_recipes():
     recipe = mongo.db.recipes
     snackrecipes = recipe.find({"category_name": "Snack"})
-    return render_template('snack.html', recipes=snackrecipes)   
-    
+    return render_template('snack.html', recipes=snackrecipes) 
+
 
 if __name__ == '__main__':
     

@@ -90,14 +90,13 @@
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 20px;
-    padding-bottom: 0px;
 }
 
 .container {
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 20px;
-    padding-bottom: 0px;
+    
 }
 
 hr {
@@ -138,6 +137,14 @@ h5, h5{
     color: white;
     font-weight: bold;
     transition: .5s;
+}
+footer{
+    position: inherit;
+    width: 100%;
+    display: block;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
 }
 
 /*--------------------------------------------------------------------------------Forms section--------*/
@@ -184,7 +191,14 @@ input[type=text]{
    border-bottom: 1px solid;
    border-radius: 0px;
 }
-/*--------------------------------------------------------*/
-.card-text> .likes> .fa{
-    color: #DC143C
+
+textarea {
+  height: 200px;
+  resize: vertical;
+  overflow: scroll;
+
+}
+
+h5 a .fa:hover {
+  color: darkblue;
 }

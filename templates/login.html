@@ -1,6 +1,16 @@
 {% extends 'base.html'%} {% set active_page = "login" %} 
 {% block content %}
-<div class="container">
+<style type="text/css">
+    footer {
+        position: fixed;
+        width: 100%;
+        display: block;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+<div class="container" style="padding-bottom: 250px">
     <div class="card mx-auto" style="width: 25rem;">
         <div class="card-body">
             <form method="POST" action="{{ url_for('login') }}">
@@ -51,5 +61,5 @@
         </div>
         
     </div>
-</div>    
+</div>
 {% endblock %}

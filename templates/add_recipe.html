@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <form action="{{ url_for('insert_recipe')}}" method="POST" class="col-sm-12 pb-5" enctype="multipart/form-data">
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title"><strong>Recipe Name</strong></label>
@@ -20,11 +20,11 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="description"><strong>Description</strong></label>
-                <textarea class="form-control" id="description" name="description" aria-label="With textarea" required></textarea>
+                <textarea class="form-control" id="description" name="description" aria-label="With textarea" style="height: 150px; border-color: #000" required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <div class="row">
                     <div class="col">
                         <label for="cooking_time"><strong>Cooking Time</strong></label>
@@ -36,15 +36,15 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="ingredients"><strong>Ingredients</strong></label>
-                <textarea class="form-control" id="ingredients" name="ingredients" aria-label="With textarea" required></textarea>
+                <textarea class="form-control" id="ingredients" name="ingredients" aria-label="With textarea" style="height: 150px; border-color: #000" required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="method"><strong>Method</strong></label>
-                <textarea class="form-control" id="method" name="method" aria-label="With textarea" required></textarea>
+                <textarea class="form-control" id="method" name="method" aria-label="With textarea" style="height: 150px; border-color: #000" required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <div class="row">
                     <div class="col">
                         <label for="picture"><strong>Image</strong></label>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <div class="row">
                     <div class="col">
                         <label for="country_of_origin"><strong>Origin Country</strong></label>

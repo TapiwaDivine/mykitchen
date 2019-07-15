@@ -9,7 +9,7 @@
           <div class="card-body">
             <h4 class="card-title text-center">{{ recipe.title }}</h4>
             <h5 class="card-text text-center mb-5"><i class="far fa-list-alt"></i> Category :     {{ recipe.category_name}}</h5>
-            <h5 class="card-text text-center mb-5"><i class="far fa-list-alt"></i> Cooking Time:     {{ recipe.cooking_time }}</h5>
+            <h5 class="card-text text-center mb-5"><i class="fas fa-stopwatch"></i> Cooking Time:     {{ recipe.cooking_time }}</h5>
             <h5 class="card-text text-center mb-5"><i class="fa fa-utensils"></i> Number of persons served:     {{ recipe.serving}}</h5>
             <h5 class="card-text text-center mb-5"><i class="fas fa-map-marked-alt"></i> Orign Country:     {{ recipe.country_of_origin}}</h5>
             <div class="row">
@@ -17,7 +17,7 @@
                     <h5 class="card-text text-center mb-5"><i class="far fa-eye"></i> Views:     {{ recipe.views }}</h5>
                 </div>
                 <div class="col-sm-6">
-                    <h5 class="card-text text-center mb-5"><a class="likes" href="{{url_for('like_recipe', recipe_id=recipe._id)}}" <!--style="color: #DC143C"--><i class="far fa-thumbs-up"></i></a>   Likes:     {{ recipe.likes }}</h5>
+                    <h5 class="card-text text-center mb-5"><a href="{{url_for('like_recipe', recipe_id=recipe._id)}}" style="color: #DC143C"><i class="far fa-thumbs-up"></i></a>   Likes:     {{ recipe.likes }}</h5>
                 </div>
                 <small class="card-text mb-5" style="margin-left: 90px; color: #DC143C">Give this recipe a Thumbs up!!!</small>
 			</div>
@@ -47,44 +47,4 @@
 
 </div>
 
-<!--<div class="container">
-    <div class="col-sm-12 col-md-12">
-    <h4 class="header">{{ recipe.title}} </h4>
-    <div class="card">
-        <div class="row">
-            <div class="card-image">
-                <img src="{{ recipe.picture }}" style="left: 20px; top: 10px" >
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <i class="fa fa-eye"></i>
-                    <h5>Meal Category : {{ recipe.category }}</h5>
-                </div>
-                <div class="card-content">
-                    <i class="material-icons prefix">timelapse</i>
-                    <h5>Cooking time: {{ recipe.cooking_time}}</h5>
-                </div>
-                <div class="card-content">
-                    <i class="material-icons prefix">restaurant</i>
-                    <h5> Serving : {{ recipe.serving }} People</h5>
-                </div>
-                <div class="card-content">
-                    <i class="material-icons prefix">location_on</i>
-                    <h5>Country of Origin : {{ recipe.country_of_origin }}</h5>
-                </div>
-                <div class="card-content">
-                    <div class="">
-                        <ul>
-                            <li class="list-inline-item"><i class="material-icons prefix">remove_red_eye</i><h5>Recipe Views :  {{recipe.views}}</h5></li>
-                            <li class="list-inline-item" style="ml-4"><i class="material-icons prefix"><a href="{{url_for('like_recipe', recipe_id=recipe._id)}}" style="color: #000">thumb_up</a></i><h5>Recipe Likes :  {{ recipe.likes }}</h5></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
--->
 {% endblock%}

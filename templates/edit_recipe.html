@@ -1,20 +1,20 @@
-{% extends 'base.html'%} 
+{% extends 'base.html' %}
 {% block content %}
 <h4>Edit Recipe</h4>
 <div class="container">
     <div class="row">
-        <form action="{{ url_for('insert_recipe')}}" method="POST" class="col-sm-12 pb-5">
+        <form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="col-sm-12 pb-5" enctype="multipart/form-data">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
                         <label for="title"><strong>Recipe Name</strong></label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter recipe name" value="{{ recipe.title }}" required>
+                        <input type="text" class="form-control" id="title" placeholder="Enter recipe name" value="{{ recipe.title }}">
                     </div>
                     <div class="col-md-6">
-                        <select class="selectpicker btn-outline-danger" id="category_name"  name="category_name" style="margin-top: 30px; padding-bottom: 15px; padding-right: 90px;" required>
+                        <select class="selectpicker btn-outline-danger" id="category_name"  name="category_name" style="margin-top: 30px; padding-bottom: 15px; padding-right: 90px;">
                             <option value=""disabled selected>Choose Category</option>
                             {% for cat in categories %}
-                            <option value="{{ recipe.category_name }}">{{ cat.category_name }}</option>
+                            <option value="{{ cat.category_name }}">{{ cat.category_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -22,17 +22,17 @@
             </div>
             <div class="form-group">
                 <label for="description"><strong>Description</strong></label>
-                <textarea class="form-control pb-5 pt-5" id="description" name="description" aria-label="With textarea" required>{{ recipe.description}}</textarea>
+                <textarea class="form-control" rows="5" id="description" name="description" aria-label="With textarea" required>{{recipe.description}}</textarea>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col">
                         <label for="cooking_time"><strong>Cooking Time</strong></label>
-                        <input type="text" class="form-control" id="cooking_time" placeholder="Enter amount of hours/mins recipe take to prepare and cook" value="{{ recipe.cooking_time }}" required>
+                        <input type="text" class="form-control" id="cooking_time" placeholder="Time hours/mins" value="{{recipe.cooking_time}}">
                     </div>
                     <div class="col">
                         <label for="serving"><strong>Serving</strong></label>
-                        <input type="text" class="form-control" id="serving" placeholder="Enter number of people your recipe serve" value="{{ recipe.serving }}" required>
+                        <input type="text" class="form-control" id="serving" placeholder="Enter number of people your recipe serve" value="{{recipe.serving}}">
                     </div>
                 </div>
             </div>
@@ -48,11 +48,11 @@
                 <div class="row">
                     <div class="col">
                         <label for="picture"><strong>Image</strong></label>
-                        <input type="file" class="form-control" id="picture" name="picture" placeholder="Insert image link from your drive or cloud" value="{{ recipe.picture }}" required>
+                        <input type="text" class="form-control" id="picture" name="picture" placeholder="Insert image link from your drive or cloud" value="{{recipe.picture}}" required>
                     </div>
                     <div class="col">
                         <label for="author"><strong>Author</strong></label>
-                        <input type="text" class="form-control" id="author" name="author" placeholder="Add your name as Author" value="{{ recipe.author }}" required>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Add your name as Author" value="{{recipe.author}}" required>
                     </div>
                 </div>
             </div>
