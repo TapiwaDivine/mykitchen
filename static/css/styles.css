@@ -1,4 +1,3 @@
-/*-----------------------------------------------------------------header and nav sections------ */
 .inner_nav_menu {
     margin: 0 auto;
     width: 100%;
@@ -46,7 +45,14 @@
 }
 
 @media (max-width: 600px) { 
-.logo a img {
+    .logo {
+        display: none !important;
+        position: absolute;
+        left: 45%;
+        top: 0;
+        content: "";
+    }
+    .logo a img {
         display: none!important;
         z-index: 0;
     }
@@ -55,8 +61,8 @@
         font-size: 10px;
         z-index: 2;
     }
+}    
     
-}
 
 .logo{
     width: 300px;

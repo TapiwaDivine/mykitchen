@@ -93,6 +93,7 @@ python, flask, pymongo, and mongodb.
 - All code were validated through:
     - [W3C Mark-up Validation Service](https://validator.w3.org/)
     - [W3C CSS Validation Service](http://www.css-validator.org/)
+- Environment Variable - since i moved from Cloud9 to AWS Cloud9 using environments variables to connect to the database has not worked even with the assistance Tutors this trying to find a solution until i decide to continue the project with the connection string.
 - Add Recipe And Edit Recipe forms
     - I tested both form and forms are functioning well and have a required element to make sure that no field will be empty. At first the form was submitting  without any data
 - Login Form and Signup
@@ -101,8 +102,8 @@ python, flask, pymongo, and mongodb.
     - both form have feedback on submission if the submition is successful
 - Mobile Responsive
     - This web-app is mostly responsive in most screens i have tested it on Iphone X, Huawei Psmart2019,Windows Chrome browser and Opera browser
-    - To note is that there is bug on the signup and login nav link as they are unclickable on the mobile screens
-- Testing on this project was done manually using developer toools to test the website
+    - To note is that there was a bug on the signup and login nav link as they are unclickable on the mobile screens. This was because of the logo div that blocking the nav link so i fixed by stopping the div from displaying on mobile view.
+- Futher testing on this project was done manually using developer toools to test the website
 - I also openned each page to check and see if there are any bug or frontend errors.
 
 ## Deployment
@@ -111,20 +112,21 @@ python, flask, pymongo, and mongodb.
 - [heroku](https://mykitchen07.herokuapp.com/)
 
 ## Credits
-- YouTube Channels
+- [YouTube](youtube.com)
+    Channels
     - Pretty Printed
     - Learn with Ali Hossain
     - Traversy Media
     - Corey Schafer
-- Stack overflow
-- Miguel Grinberg (Flask mega tutorial)
+- [Stack Overflow](https://stackoverflow.com/questions)
+- Miguel Grinberg [Flask mega tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 - Tutors at code institute
 - My Mentor (Maranatha)
 - Flask documentation
 - Jinja2 Documentation
-- mdbootstrap.com
-- getboostrap.com
-- Materializecss.com
+- [mdbootstrap](mdbootstrap.com)
+- [Getboostrap](getboostrap.com)
+
 
 ### Content
 - getboostrap.com were i accessed code for all the bootstrap in this project
