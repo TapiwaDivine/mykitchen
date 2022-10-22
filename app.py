@@ -21,7 +21,7 @@ app = Flask(__name__)
 # Mongo Config
 
 app.config["MONGO_DBNAME"] = "recipes_database"
-app.config["MONGO_URI"] = "mongodb+srv://root:1Britney@myprojectcluster-iqnfp.mongodb.net/recipes_database?retryWrites=true&w=majority"
+app.config["MONGO_URI"] = "mongodb+srv://root:root@myprojectcluster-iqnfp.mongodb.net/recipes_database?retryWrites=true&w=majority"
 app.config["SECRET_KEY"] = os.urandom(24)
 
 mongo = PyMongo(app)
